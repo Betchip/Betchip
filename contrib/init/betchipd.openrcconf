@@ -1,0 +1,33 @@
+# /etc/conf.d/betchipd: config file for /etc/init.d/betchipd
+
+# Config file location
+#BETCHIPD_CONFIGFILE="/etc/betchip/betchip.conf"
+
+# What directory to write pidfile to?  (created and owned by $BETCHIPD_USER)
+#BETCHIPD_PIDDIR="/var/run/betchipd"
+
+# What filename to give the pidfile
+#BETCHIPD_PIDFILE="${BETCHIPD_PIDDIR}/betchipd.pid"
+
+# Where to write betchipd data (be mindful that the blockchain is large)
+#BETCHIPD_DATADIR="/var/lib/betchipd"
+
+# User and group to own betchipd process
+#BETCHIPD_USER="betchip"
+#BETCHIPD_GROUP="betchip"
+
+# Path to betchipd executable
+#BETCHIPD_BIN="/usr/bin/betchipd"
+
+# Nice value to run betchipd under
+#BETCHIPD_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+#BETCHIPD_OPTS=""
+
+# The timeout in seconds OpenRC will wait for betchipd to terminate
+# after a SIGTERM has been raised.
+# Note that this will be mapped as argument to start-stop-daemon's
+# '--retry' option, which means you can specify a retry schedule
+# here. For more information see man 8 start-stop-daemon.
+BETCHIPD_SIGTERM_TIMEOUT=60

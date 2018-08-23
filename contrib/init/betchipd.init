@@ -1,0 +1,67 @@
+#!/bin/bash
+#
+#  betchipd The betchip core server.
+#
+#
+# chkconfig: 345 80 20
+# description: betchipd
+# processname: betchipd
+#
+
+# Source function library.
+. /etc/init.d/functions
+
+# you can override defaults in /etc/sysconfig/betchipd, see below
+if [ -f /etc/sysconfig/betchipd ]; then
+        . /etc/sysconfig/betchipd
+fi
+
+RETVAL=0
+
+prog=betchipd
+# you can override the lockfile via BETCHIPD_LOCKFILE in /etc/sysconfig/betchipd
+lockfile=${BETCHIPD_LOCKFILE-/var/lock/subsys/betchipd}
+
+# betchipd defaults to /usr/bin/betchipd, override with BETCHIPD_BIN
+betchipd=${BETCHIPD_BIN-/usr/bin/betchipd}
+
+# betchipd opts default to -disablewallet, override with BETCHIPD_OPTS
+betchipd_opts=${BETCHIPD_OPTS--disablewallet}
+
+start() {
+    echo -n $"Starting $prog: "
+    daemon $DAEMONOPTS $betchipd $betchipd_opts
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch $lockfile
+    return $RETVAL
+}
+
+stop() {
+    echo -n $"Stopping $prog: "
+    killproc $prog
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f $lockfile
+    return $RETVAL
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    status)
+        status $prog
+        ;;
+    restart)
+        stop
+        start
+        ;;
+    *)
+        echo "Usage: service $prog {start|stop|status|restart}"
+        exit 1
+        ;;
+esac

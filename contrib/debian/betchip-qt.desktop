@@ -1,0 +1,14 @@
+[Desktop Entry]
+Version=1.0
+Name=Betchip Core
+Comment=Connect to the Betchip P2P Network
+Comment[de]=Verbinde mit dem Betchip peer-to-peer Netzwerk
+Comment[fr]=Betchip, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Betchip, eşten eşe kriptografik sanal para birimi
+Exec=betchip-qt %u
+Terminal=false
+Type=Application
+Icon=betchip128
+MimeType=x-scheme-handler/betchip;
+Categories=Office;Finance;
+StartupWMClass=Betchip-qt

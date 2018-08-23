@@ -1,0 +1,6 @@
+usr/local/bin/betchip-qt usr/bin
+share/pixmaps/betchip32.xpm usr/share/pixmaps
+share/pixmaps/betchip16.xpm usr/share/pixmaps
+share/pixmaps/betchip128.png usr/share/pixmaps
+debian/betchip-qt.desktop usr/share/applications
+debian/betchip-qt.protocol usr/share/kde4/services/

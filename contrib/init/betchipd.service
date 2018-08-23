@@ -1,0 +1,25 @@
+# It is not recommended to modify this file in-place, because it will
+# be overwritten during package upgrades. If you want to add further
+# options or overwrite existing ones then use
+# $ systemctl edit betchipd.service
+# See "man systemd.service" for details.
+
+# Note that almost all daemon options could be specified in
+# /etc/betchip/betchip.conf
+
+[Unit]
+Description=Betchip daemon
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/betchipd -daemon -conf=/etc/betchip/betchip.conf -pid=/run/betchipd/betchipd.pid
+# Creates /run/betchipd owned by betchip
+RuntimeDirectory=betchipd
+User=betchip
+Type=forking
+PIDFile=/run/betchipd/betchipd.pid
+Restart=on-failure
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

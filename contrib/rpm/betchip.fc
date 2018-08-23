@@ -1,0 +1,8 @@
+/usr/bin/betchip-cli		--	gen_context(system_u:object_r:betchip_exec_t,s0)
+/usr/sbin/betchipd		--	gen_context(system_u:object_r:betchip_exec_t,s0)
+/usr/lib(64)?/betchip/betchipd		--	gen_context(system_u:object_r:betchip_exec_t,s0)
+
+/etc/betchip(/.*)?		gen_context(system_u:object_r:betchip_conf_t,s0)
+/var/lib/betchip(/.*)?		gen_context(system_u:object_r:betchip_var_lib_t,s0)
+
+(/var)?/run/betchipd(/.*)?   gen_context(system_u:object_r:betchip_var_run_t,s0)

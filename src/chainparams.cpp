@@ -42,7 +42,7 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
  *
  * CBlock(hash=000000000019d6, ver=1, hashPrevBlock=00000000000000, hashMerkleRoot=4a5e1e, nTime=1231006505, nBits=1d00ffff, nNonce=2083236893, vtx=1)
  *   CTransaction(hash=4a5e1e, ver=1, vin.size=1, vout.size=1, nLockTime=0)
- *     CTxIn(COutPoint(000000, -1), coinbase f4d354fa61028bac70b66faaee1a7f46f94381f5c3f0ae8a792047b2c8ac4785 57f66f2a1c789b95c8e1c89784bbf5b92ccd916a82295d593877ab4bfb1e0d9c)
+ *     CTxIn(COutPoint(000000, -1), coinbase 04ffff001d0104455468652054696d65732030332f4a616e2f32303039204368616e63656c6c6f72206f6e206272696e6b206f66207365636f6e64206261696c6f757420666f722062616e6b73)
  *     CTxOut(nValue=50.00000000, scriptPubKey=0x5F1DF16B2B704C8A578D0B)
  *   vMerkleTree: 4a5e1e
  */
@@ -149,14 +149,16 @@ public:
             {
                 {11111, uint256S("0x00000000000007bbe2f308ba6d32c398c427754d54e98ba0cefe54f5bdf2e5c1")},
                 {22222, uint256S("0x00000000000001a7089f4e757b03fc718046d37b5af42ecce31ad0e1022423ea")},
-                {23250, uint256S("0x00000000000001eb71c85df939e9d1f42166cf20dfbe6f4e1fb0173abc0f5f7e")},
+                {33333, uint256S("0x00000000000000782719b55b1026e7ba55f5c1b8cd904f03018a91de7dcf986d")},
+                {44444, uint256S("0x000000000000022dedcd1dbdfdf923df3f9521bc3137f4fd44400259964e76e3")},
+                {48404, uint256S("0x00000000000000e2ebb2b1a6e91be662229a5131e372a424a16f5cba9b7bb444")},
             }
         };
 
         chainTxData = ChainTxData{
             // Data as of block 00000000000007bbe2f308ba6d32c398c427754d54e98ba0cefe54f5bdf2e5c1 (height 11111).
-        	1533681949, // * UNIX timestamp of last known number of transactions
-			38171,  // * total number of transactions between genesis and that timestamp
+        	1544641943, // * UNIX timestamp of last known number of transactions
+			106309,  // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
 			1000.0         // * estimated number of transactions per second after that timestamp
         };

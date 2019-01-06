@@ -1,9 +1,8 @@
 Betchip Core integration/staging tree
 =====================================
 
-[![Build Status](https://travis-ci.org/betchip/betchip.svg?branch=master)](https://travis-ci.org/betchip/betchip)
 
-https://betchipcore.org
+https://betchip.io
 
 What is Betchip?
 ----------------

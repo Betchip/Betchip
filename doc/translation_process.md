@@ -106,4 +106,4 @@ To create a new language template, you will need to edit the languages manifest 
 **Note:** that the language translation file **must end in `.qm`** (the compiled extension), and not `.ts`.
 
 ### Questions and general assistance
-The Betchip-Core translation maintainers include *tcatm, seone, Diapolo, wumpus and luke-jr*. You can find them, and others. dev@betchip.io
+You can contact us at dev@betchip.io

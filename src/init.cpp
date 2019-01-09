@@ -516,8 +516,8 @@ std::string HelpMessage(HelpMessageMode mode)
 
 std::string LicenseInfo()
 {
-    const std::string URL_SOURCE_CODE = "<https://github.com/betchip/betchip>";
-    const std::string URL_WEBSITE = "<https://betchipcore.org>";
+    const std::string URL_SOURCE_CODE = "<https://github.com/Betchip/Betchip>";
+    const std::string URL_WEBSITE = "<https://betchip.io>";
 
     return CopyrightHolders(strprintf(_("Copyright (C) %i-%i"), 2009, COPYRIGHT_YEAR) + " ") + "\n" +
            "\n" +

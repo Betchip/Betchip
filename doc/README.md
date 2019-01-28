@@ -5,11 +5,11 @@ Setup
 ---------------------
 Betchip Core is the original Betchip client and it builds the backbone of the network. It downloads and, by default, stores the entire history of Betchip transactions (which is currently more than 100 GBs); depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more.
 
-To download Betchip Core, visit [betchip.io](https://betchip.io/en/releases/).
+To download Betchip Core, visit [betchipcore.org](https://betchipcore.org/en/releases/).
 
 Running
 ---------------------
-The following are some helpful notes on how to run Betchip on your native platform.
+The following are some helpful notes on how to run Betchip Core on your native platform.
 
 ### Unix
 
@@ -22,9 +22,9 @@ Unpack the files into a directory and run:
 
 Unpack the files into a directory, and then run betchip-qt.exe.
 
-### OS X
+### macOS
 
-Drag Betchip-Core to your applications folder, and then run Betchip-Core.
+Drag Betchip Core to your applications folder, and then run Betchip Core.
 
 ### Need Help?
 
@@ -35,13 +35,14 @@ for help and more information.
 
 Building
 ---------------------
-The following are developer notes on how to build Betchip on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
+The following are developer notes on how to build Betchip Core on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
 
 - [Dependencies](dependencies.md)
-- [OS X Build Notes](build-osx.md)
+- [macOS Build Notes](build-osx.md)
 - [Unix Build Notes](build-unix.md)
 - [Windows Build Notes](build-windows.md)
 - [OpenBSD Build Notes](build-openbsd.md)
+- [NetBSD Build Notes](build-netbsd.md)
 - [Gitian Building Guide](gitian-building.md)
 
 Development
@@ -74,6 +75,7 @@ The Betchip repo's [root README](/README.md) contains relevant information on th
 - [Tor Support](tor.md)
 - [Init Scripts (systemd/upstart/openrc)](init.md)
 - [ZMQ](zmq.md)
+- [PSBT support](psbt.md)
 
 License
 ---------------------

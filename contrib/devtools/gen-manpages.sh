@@ -1,13 +1,16 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
+export LC_ALL=C
 TOPDIR=${TOPDIR:-$(git rev-parse --show-toplevel)}
-SRCDIR=${SRCDIR:-$TOPDIR/src}
+BUILDDIR=${BUILDDIR:-$TOPDIR}
+
+BINDIR=${BINDIR:-$BUILDDIR/src}
 MANDIR=${MANDIR:-$TOPDIR/doc/man}
 
-BETCHIPD=${BETCHIPD:-$SRCDIR/betchipd}
-BETCHIPCLI=${BETCHIPCLI:-$SRCDIR/betchip-cli}
-BETCHIPTX=${BETCHIPTX:-$SRCDIR/betchip-tx}
-BETCHIPQT=${BETCHIPQT:-$SRCDIR/qt/betchip-qt}
+BETCHIPD=${BETCHIPD:-$BINDIR/betchipd}
+BETCHIPCLI=${BETCHIPCLI:-$BINDIR/betchip-cli}
+BETCHIPTX=${BETCHIPTX:-$BINDIR/betchip-tx}
+BETCHIPQT=${BETCHIPQT:-$BINDIR/qt/betchip-qt}
 
 [ ! -x $BETCHIPD ] && echo "$BETCHIPD not found or not executable." && exit 1
 

@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2017 The Bitcoin Core developers
+// Copyright (c) 2011-2018 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -20,6 +20,7 @@ QList<BetchipUnits::Unit> BetchipUnits::availableUnits()
     unitlist.append(BTP);
     unitlist.append(mBTP);
     unitlist.append(uBTP);
+    unitlist.append(SAT);
     return unitlist;
 }
 
@@ -30,6 +31,7 @@ bool BetchipUnits::valid(int unit)
     case BTP:
     case mBTP:
     case uBTP:
+    case SAT:
         return true;
     default:
         return false;
@@ -43,6 +45,7 @@ QString BetchipUnits::longName(int unit)
     case BTP: return QString("BTP");
     case mBTP: return QString("mBTP");
     case uBTP: return QString::fromUtf8("µBTP (bits)");
+    case SAT: return QString("Satoshi (sat)");
     default: return QString("???");
     }
 }
@@ -52,7 +55,8 @@ QString BetchipUnits::shortName(int unit)
     switch(unit)
     {
     case uBTP: return QString::fromUtf8("bits");
-    default:   return longName(unit);
+    case SAT: return QString("sat");
+    default: return longName(unit);
     }
 }
 
@@ -63,6 +67,7 @@ QString BetchipUnits::description(int unit)
     case BTP: return QString("Betchips");
     case mBTP: return QString("Milli-Betchips (1 / 1" THIN_SP_UTF8 "000)");
     case uBTP: return QString("Micro-Betchips (bits) (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+    case SAT: return QString("Satoshi (sat) (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
     default: return QString("???");
     }
 }
@@ -71,10 +76,11 @@ qint64 BetchipUnits::factor(int unit)
 {
     switch(unit)
     {
-    case BTP:  return 100000000;
+    case BTP: return 100000000;
     case mBTP: return 100000;
     case uBTP: return 100;
-    default:   return 100000000;
+    case SAT: return 1;
+    default: return 100000000;
     }
 }
 
@@ -85,6 +91,7 @@ int BetchipUnits::decimals(int unit)
     case BTP: return 8;
     case mBTP: return 5;
     case uBTP: return 2;
+    case SAT: return 0;
     default: return 0;
     }
 }
@@ -100,9 +107,7 @@ QString BetchipUnits::format(int unit, const CAmount& nIn, bool fPlus, Separator
     int num_decimals = decimals(unit);
     qint64 n_abs = (n > 0 ? n : -n);
     qint64 quotient = n_abs / coin;
-    qint64 remainder = n_abs % coin;
     QString quotient_str = QString::number(quotient);
-    QString remainder_str = QString::number(remainder).rightJustified(num_decimals, '0');
 
     // Use SI-style thin space separators as these are locale independent and can't be
     // confused with the decimal marker.
@@ -116,7 +121,14 @@ QString BetchipUnits::format(int unit, const CAmount& nIn, bool fPlus, Separator
         quotient_str.insert(0, '-');
     else if (fPlus && n > 0)
         quotient_str.insert(0, '+');
-    return quotient_str + QString(".") + remainder_str;
+
+    if (num_decimals > 0) {
+        qint64 remainder = n_abs % coin;
+        QString remainder_str = QString::number(remainder).rightJustified(num_decimals, '0');
+        return quotient_str + QString(".") + remainder_str;
+    } else {
+        return quotient_str;
+    }
 }
 
 

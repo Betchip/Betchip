@@ -15,7 +15,7 @@ Service User
 
 All three Linux startup configurations assume the existence of a "betchip" user
 and group.  They must be created before attempting to use these scripts.
-The OS X configuration assumes betchipd will be set up for the current user.
+The macOS configuration assumes betchipd will be set up for the current user.
 
 Configuration
 ---------------------------------
@@ -44,7 +44,7 @@ This allows for running betchipd without having to do any manual configuration.
 relative to the data directory. `wallet` *only* supports relative paths.
 
 For an example configuration file that describes the configuration settings,
-see `contrib/debian/examples/betchip.conf`.
+see `share/examples/betchip.conf`.
 
 Paths
 ---------------------------------
@@ -65,7 +65,7 @@ reasons to make the configuration file and data directory only readable by the
 betchip user and group.  Access to betchip-cli and other betchipd rpc clients
 can then be controlled by group membership.
 
-### Mac OS X
+### macOS
 
 Binary:              `/usr/local/bin/betchipd`  
 Configuration file:  `~/Library/Application Support/Betchip/betchip.conf`  
@@ -84,6 +84,8 @@ Installing this .service file consists of just copying it to
 To test, run `systemctl start betchipd` and to enable for system startup run
 `systemctl enable betchipd`
 
+NOTE: When installing for systemd in Debian/Ubuntu the .service file needs to be copied to the /lib/systemd/system directory instead.
+
 ### OpenRC
 
 Rename betchipd.openrc to betchipd and drop it in /etc/init.d.  Double
@@ -92,6 +94,8 @@ check ownership and permissions and make it executable.  Test it with
 `rc-update add betchipd`
 
 ### Upstart (for Debian/Ubuntu based distributions)
+
+Upstart is the default init system for Debian/Ubuntu versions older than 15.04. If you are using version 15.04 or newer and haven't manually configured upstart you should follow the systemd instructions instead.
 
 Drop betchipd.conf in /etc/init.  Test by running `service betchipd start`
 it will automatically start on reboot.
@@ -107,7 +111,7 @@ Using this script, you can adjust the path and flags to the betchipd program by
 setting the BETCHIPD and FLAGS environment variables in the file
 /etc/sysconfig/betchipd. You can also use the DAEMONOPTS environment variable here.
 
-### Mac OS X
+### macOS
 
 Copy org.betchip.betchipd.plist into ~/Library/LaunchAgents. Load the launch agent by
 running `launchctl load ~/Library/LaunchAgents/org.betchip.betchipd.plist`.

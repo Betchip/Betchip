@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2017 The Bitcoin Core developers
+// Copyright (c) 2011-2018 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -12,6 +12,7 @@
 
 #include <qt/guiutil.h>
 
+#include <interfaces/node.h>
 #include <util.h>
 
 #include <QFileDialog>
@@ -22,9 +23,9 @@
 
 static const uint64_t GB_BYTES = 1000000000LL;
 /* Minimum free space (in GB) needed for data directory */
-static const uint64_t BLOCK_CHAIN_SIZE = 200;
+constexpr uint64_t BLOCK_CHAIN_SIZE = 1;//220
 /* Minimum free space (in GB) needed for data directory when pruned; Does not include prune target */
-static const uint64_t CHAIN_STATE_SIZE = 3;
+static const uint64_t CHAIN_STATE_SIZE = 1;//3
 /* Total required space (in GB) depending on user choice (prune, not prune) */
 static uint64_t requiredSpace;
 
@@ -126,7 +127,7 @@ Intro::Intro(QWidget *parent) :
     ui->lblExplanation1->setText(ui->lblExplanation1->text()
         .arg(tr(PACKAGE_NAME))
         .arg(BLOCK_CHAIN_SIZE)
-        .arg(2009)
+        .arg(2018)
         .arg(tr("Betchip"))
     );
     ui->lblExplanation2->setText(ui->lblExplanation2->text().arg(tr(PACKAGE_NAME)));
@@ -186,7 +187,7 @@ QString Intro::getDefaultDataDirectory()
     return GUIUtil::boostPathToQString(GetDefaultDataDir());
 }
 
-bool Intro::pickDataDirectory()
+bool Intro::pickDataDirectory(interfaces::Node& node)
 {
     QSettings settings;
     /* If data directory provided on command line, no need to look at settings
@@ -233,8 +234,9 @@ bool Intro::pickDataDirectory()
      * override -datadir in the betchip.conf file in the default data directory
      * (to be consistent with betchipd behavior)
      */
-    if(dataDir != getDefaultDataDirectory())
-        gArgs.SoftSetArg("-datadir", GUIUtil::qstringToBoostPath(dataDir).string()); // use OS locale for path setting
+    if(dataDir != getDefaultDataDirectory()) {
+        node.softSetArg("-datadir", GUIUtil::qstringToBoostPath(dataDir).string()); // use OS locale for path setting
+    }
     return true;
 }
 

@@ -1,11 +1,11 @@
-Mac OS X Build Instructions and Notes
+macOS Build Instructions and Notes
 ====================================
 The commands in this guide should be executed in a Terminal application.
 The built-in one is located in `/Applications/Utilities/Terminal.app`.
 
 Preparation
 -----------
-Install the OS X command line tools:
+Install the macOS command line tools:
 
 `xcode-select --install`
 
@@ -16,15 +16,13 @@ Then install [Homebrew](https://brew.sh).
 Dependencies
 ----------------------
 
-    brew install automake berkeley-db4 libtool boost miniupnpc openssl pkg-config protobuf python3 qt libevent
+    brew install automake berkeley-db4 libtool boost miniupnpc openssl pkg-config protobuf python qt libevent qrencode
 
 See [dependencies.md](dependencies.md) for a complete overview.
 
 If you want to build the disk image with `make deploy` (.dmg / optional), you need RSVG
 
     brew install librsvg
-
-NOTE: Building with Qt4 is still supported, however, could result in a broken UI. Building with Qt5 is recommended.
 
 Berkeley DB
 -----------
@@ -43,14 +41,14 @@ from the root of the repository.
 Build Betchip Core
 ------------------------
 
-1. Clone the betchip source code and cd into `betchip`
+1. Clone the Betchip Core source code and cd into `betchip`
 
         git clone https://github.com/betchip/betchip
         cd betchip
 
-2.  Build betchip-core:
+2.  Build Betchip Core:
 
-    Configure and build the headless betchip binaries as well as the GUI (if Qt is found).
+    Configure and build the headless Betchip Core binaries as well as the GUI (if Qt is found).
 
     You can disable the GUI build by passing `--without-gui` to configure.
 
@@ -71,7 +69,7 @@ Running
 
 Betchip Core is now available at `./src/betchipd`
 
-Before running, it's recommended you create an RPC configuration file.
+Before running, it's recommended that you create an RPC configuration file.
 
     echo -e "rpcuser=betchiprpc\nrpcpassword=$(xxd -l 16 -p /dev/urandom)" > "/Users/${USER}/Library/Application Support/Betchip/betchip.conf"
 
@@ -90,26 +88,9 @@ Other commands:
     ./src/betchip-cli --help # Outputs a list of command-line options.
     ./src/betchip-cli help # Outputs a list of RPC commands when the daemon is running.
 
-Using Qt Creator as IDE
-------------------------
-You can use Qt Creator as an IDE, for betchip development.
-Download and install the community edition of [Qt Creator](https://www.qt.io/download/).
-Uncheck everything except Qt Creator during the installation process.
-
-1. Make sure you installed everything through Homebrew mentioned above
-2. Do a proper ./configure --enable-debug
-3. In Qt Creator do "New Project" -> Import Project -> Import Existing Project
-4. Enter "betchip-qt" as project name, enter src/qt as location
-5. Leave the file selection as it is
-6. Confirm the "summary page"
-7. In the "Projects" tab select "Manage Kits..."
-8. Select the default "Desktop" kit and select "Clang (x86 64bit in /usr/bin)" as compiler
-9. Select LLDB as debugger (you might need to set the path to your installation)
-10. Start debugging with Qt Creator
-
 Notes
 -----
 
-* Tested on OS X 10.8 through 10.14.2 on 64-bit Intel processors only.
+* Tested on OS X 10.10 Yosemite through macOS 10.14 High Sierra on 64-bit Intel processors only.
 
-* Building with downloaded Qt binaries is not officially supported. See the notes in [#7714](https://github.com/bitcoin/bitcoin/issues/7714)
+* Building with downloaded Qt binaries is not officially supported. See the notes in [#7714](https://github.com/betchip/betchip/issues/7714)

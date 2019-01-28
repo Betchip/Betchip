@@ -1,10 +1,10 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2017 The Bitcoin Core developers
+// Copyright (c) 2009-2018 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BETCHIP_BETCHIPCONSENSUS_H
-#define BETCHIP_BETCHIPCONSENSUS_H
+#ifndef BETCHIP_SCRIPT_BETCHIPCONSENSUS_H
+#define BETCHIP_SCRIPT_BETCHIPCONSENSUS_H
 
 #include <stdint.h>
 
@@ -80,4 +80,4 @@ EXPORT_SYMBOL unsigned int betchipconsensus_version();
 
 #undef EXPORT_SYMBOL
 
-#endif // BETCHIP_BETCHIPCONSENSUS_H
+#endif // BETCHIP_SCRIPT_BETCHIPCONSENSUS_H

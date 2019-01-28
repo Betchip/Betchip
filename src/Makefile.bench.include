@@ -15,25 +15,27 @@ bench_bench_betchip_SOURCES = \
   bench/bench_betchip.cpp \
   bench/bench.cpp \
   bench/bench.h \
+  bench/block_assemble.cpp \
   bench/checkblock.cpp \
   bench/checkqueue.cpp \
-  bench/Examples.cpp \
+  bench/examples.cpp \
   bench/rollingbloom.cpp \
   bench/crypto_hash.cpp \
   bench/ccoins_caching.cpp \
+  bench/merkle_root.cpp \
   bench/mempool_eviction.cpp \
   bench/verify_script.cpp \
   bench/base58.cpp \
+  bench/bech32.cpp \
   bench/lockedpool.cpp \
-  bench/perf.cpp \
-  bench/perf.h \
-  bench/prevector_destructor.cpp
+  bench/prevector.cpp
 
 nodist_bench_bench_betchip_SOURCES = $(GENERATED_BENCH_FILES)
 
 bench_bench_betchip_CPPFLAGS = $(AM_CPPFLAGS) $(BETCHIP_INCLUDES) $(EVENT_CLFAGS) $(EVENT_PTHREADS_CFLAGS) -I$(builddir)/bench/
 bench_bench_betchip_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 bench_bench_betchip_LDADD = \
+  $(LIBBETCHIP_WALLET) \
   $(LIBBETCHIP_SERVER) \
   $(LIBBETCHIP_COMMON) \
   $(LIBBETCHIP_UTIL) \
@@ -51,7 +53,6 @@ endif
 
 if ENABLE_WALLET
 bench_bench_betchip_SOURCES += bench/coin_selection.cpp
-bench_bench_betchip_LDADD += $(LIBBETCHIP_WALLET) $(LIBBETCHIP_CRYPTO)
 endif
 
 bench_bench_betchip_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)

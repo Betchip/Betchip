@@ -9,29 +9,22 @@ EXTRA_LIBRARIES += qt/libbetchipqt.a
 QT_TS = \
   qt/locale/betchip_af.ts \
   qt/locale/betchip_af_ZA.ts \
-  qt/locale/betchip_am.ts \
   qt/locale/betchip_ar.ts \
   qt/locale/betchip_be_BY.ts \
   qt/locale/betchip_bg_BG.ts \
   qt/locale/betchip_bg.ts \
-  qt/locale/betchip_bn.ts \
-  qt/locale/betchip_bs.ts \
   qt/locale/betchip_ca_ES.ts \
   qt/locale/betchip_ca.ts \
   qt/locale/betchip_ca@valencia.ts \
-  qt/locale/betchip_cs_CZ.ts \
   qt/locale/betchip_cs.ts \
   qt/locale/betchip_cy.ts \
   qt/locale/betchip_da.ts \
-  qt/locale/betchip_de_DE.ts \
   qt/locale/betchip_de.ts \
   qt/locale/betchip_el_GR.ts \
   qt/locale/betchip_el.ts \
-  qt/locale/betchip_en_AU.ts \
   qt/locale/betchip_en_GB.ts \
   qt/locale/betchip_en.ts \
   qt/locale/betchip_eo.ts \
-  qt/locale/betchip_es_419.ts \
   qt/locale/betchip_es_AR.ts \
   qt/locale/betchip_es_CL.ts \
   qt/locale/betchip_es_CO.ts \
@@ -51,64 +44,44 @@ QT_TS = \
   qt/locale/betchip_fr_FR.ts \
   qt/locale/betchip_fr.ts \
   qt/locale/betchip_gl.ts \
-  qt/locale/betchip_he_IL.ts \
   qt/locale/betchip_he.ts \
   qt/locale/betchip_hi_IN.ts \
   qt/locale/betchip_hr.ts \
-  qt/locale/betchip_hu_HU.ts \
   qt/locale/betchip_hu.ts \
   qt/locale/betchip_id_ID.ts \
-  qt/locale/betchip_id.ts \
-  qt/locale/betchip_is.ts \
   qt/locale/betchip_it_IT.ts \
   qt/locale/betchip_it.ts \
-  qt/locale/betchip_ja_JP.ts \
   qt/locale/betchip_ja.ts \
   qt/locale/betchip_ka.ts \
   qt/locale/betchip_kk_KZ.ts \
-  qt/locale/betchip_km_KH.ts \
   qt/locale/betchip_ko_KR.ts \
-  qt/locale/betchip_ko.ts \
   qt/locale/betchip_ku_IQ.ts \
   qt/locale/betchip_ky.ts \
   qt/locale/betchip_la.ts \
   qt/locale/betchip_lt.ts \
   qt/locale/betchip_lv_LV.ts \
   qt/locale/betchip_mk_MK.ts \
-  qt/locale/betchip_ml.ts \
   qt/locale/betchip_mn.ts \
-  qt/locale/betchip_mr_IN.ts \
   qt/locale/betchip_ms_MY.ts \
-  qt/locale/betchip_ms.ts \
-  qt/locale/betchip_my.ts \
-  qt/locale/betchip_nb_NO.ts \
   qt/locale/betchip_nb.ts \
   qt/locale/betchip_ne.ts \
-  qt/locale/betchip_nl_NL.ts \
   qt/locale/betchip_nl.ts \
   qt/locale/betchip_pam.ts \
-  qt/locale/betchip_pl_PL.ts \
   qt/locale/betchip_pl.ts \
   qt/locale/betchip_pt_BR.ts \
   qt/locale/betchip_pt_PT.ts \
-  qt/locale/betchip_pt.ts \
   qt/locale/betchip_ro_RO.ts \
   qt/locale/betchip_ro.ts \
   qt/locale/betchip_ru_RU.ts \
   qt/locale/betchip_ru.ts \
-  qt/locale/betchip_si.ts \
   qt/locale/betchip_sk.ts \
   qt/locale/betchip_sl_SI.ts \
-  qt/locale/betchip_sn.ts \
   qt/locale/betchip_sq.ts \
   qt/locale/betchip_sr@latin.ts \
   qt/locale/betchip_sr.ts \
   qt/locale/betchip_sv.ts \
-  qt/locale/betchip_ta_IN.ts \
   qt/locale/betchip_ta.ts \
-  qt/locale/betchip_te.ts \
   qt/locale/betchip_th_TH.ts \
-  qt/locale/betchip_th.ts \
   qt/locale/betchip_tr_TR.ts \
   qt/locale/betchip_tr.ts \
   qt/locale/betchip_uk.ts \
@@ -117,7 +90,6 @@ QT_TS = \
   qt/locale/betchip_vi.ts \
   qt/locale/betchip_vi_VN.ts \
   qt/locale/betchip_zh_CN.ts \
-  qt/locale/betchip_zh-Hans.ts \
   qt/locale/betchip_zh_HK.ts \
   qt/locale/betchip_zh.ts \
   qt/locale/betchip_zh_TW.ts
@@ -306,6 +278,7 @@ RES_ICONS = \
   qt/res/icons/network_disabled.png \
   qt/res/icons/open.png \
   qt/res/icons/overview.png \
+  qt/res/icons/proxy.png \
   qt/res/icons/quit.png \
   qt/res/icons/receive.png \
   qt/res/icons/remove.png \
@@ -384,7 +357,7 @@ if ENABLE_WALLET
 BETCHIP_QT_CPP += $(BETCHIP_QT_WALLET_CPP)
 endif
 
-RES_IMAGES = 
+RES_IMAGES =
 
 RES_MOVIES = $(wildcard $(srcdir)/qt/res/movies/spinner-*.png)
 
@@ -430,7 +403,7 @@ if TARGET_WINDOWS
 endif
 qt_betchip_qt_LDADD = qt/libbetchipqt.a $(LIBBETCHIP_SERVER)
 if ENABLE_WALLET
-qt_betchip_qt_LDADD += $(LIBBETCHIP_WALLET)
+qt_betchip_qt_LDADD += $(LIBBETCHIP_UTIL) $(LIBBETCHIP_WALLET)
 endif
 if ENABLE_ZMQ
 qt_betchip_qt_LDADD += $(LIBBETCHIP_ZMQ) $(ZMQ_LIBS)
@@ -439,7 +412,7 @@ qt_betchip_qt_LDADD += $(LIBBETCHIP_CLI) $(LIBBETCHIP_COMMON) $(LIBBETCHIP_UTIL)
   $(BOOST_LIBS) $(QT_LIBS) $(QT_DBUS_LIBS) $(QR_LIBS) $(PROTOBUF_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(LIBSECP256K1) \
   $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
 qt_betchip_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
-qt_betchip_qt_LIBTOOLFLAGS = --tag CXX
+qt_betchip_qt_LIBTOOLFLAGS = $(AM_LIBTOOLFLAGS) --tag CXX
 
 #locale/foo.ts -> locale/foo.qm
 QT_QM=$(QT_TS:.ts=.qm)

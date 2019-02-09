@@ -25,7 +25,7 @@ class RpcCreateMultiSigTest(BetchipTestFramework):
     def run_test(self):
         node0,node1,node2 = self.nodes
 
-        # 50 BTP each, rest will be 25 BTP each
+        # 50 BTCHP each, rest will be 25 BTCHP each
         node0.generate(149)
         self.sync_all()
 

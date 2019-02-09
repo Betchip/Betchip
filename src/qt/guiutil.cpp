@@ -165,7 +165,7 @@ bool parseBetchipURI(const QUrl &uri, SendCoinsRecipient *out)
         {
             if(!i->second.isEmpty())
             {
-                if(!BetchipUnits::parse(BetchipUnits::BTP, i->second, &rv.amount))
+                if(!BetchipUnits::parse(BetchipUnits::BTCHP, i->second, &rv.amount))
                 {
                     return false;
                 }
@@ -196,7 +196,7 @@ QString formatBetchipURI(const SendCoinsRecipient &info)
 
     if (info.amount)
     {
-        ret += QString("?amount=%1").arg(BetchipUnits::format(BetchipUnits::BTP, info.amount, false, BetchipUnits::separatorNever));
+        ret += QString("?amount=%1").arg(BetchipUnits::format(BetchipUnits::BTCHP, info.amount, false, BetchipUnits::separatorNever));
         paramCount++;
     }
 

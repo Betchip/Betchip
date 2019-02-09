@@ -941,7 +941,7 @@ static bool AcceptToMemoryPoolWorker(const CChainParams& chainparams, CTxMemPool
         // Remove conflicting transactions from the mempool
         for (CTxMemPool::txiter it : allConflicting)
         {
-            LogPrint(BCLog::MEMPOOL, "replacing tx %s with %s for %s BTP additional fees, %d delta bytes\n",
+            LogPrint(BCLog::MEMPOOL, "replacing tx %s with %s for %s BTCHP additional fees, %d delta bytes\n",
                     it->GetTx().GetHash().ToString(),
                     hash.ToString(),
                     FormatMoney(nModifiedFees - nConflictingFees),
@@ -1161,23 +1161,29 @@ bool ReadRawBlockFromDisk(std::vector<uint8_t>& block, const CBlockIndex* pindex
 
 CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
 {
-    int nPhaseI = ( consensusParams.nSubsidyHalvingInterval ) + 2;
-    int nPhaseII = ( consensusParams.nSubsidyHalvingInterval * 2 ) + 2;
-    int nPhaseIII = ( consensusParams.nSubsidyHalvingInterval * 3 ) + 2;
-    int nHighestBlock = 1732562;
+    int nSoftTransitionBlock = 16720;
+    int nPhaseI = nSoftTransitionBlock + ( consensusParams.nSubsidyHalvingInterval * 1);
+    int nPhaseII = nSoftTransitionBlock + ( consensusParams.nSubsidyHalvingInterval * 2 );
+    int nPhaseIII = nSoftTransitionBlock + ( consensusParams.nSubsidyHalvingInterval * 3 );
+    int nPhaseIV   = nSoftTransitionBlock + ( consensusParams.nSubsidyHalvingInterval * 4 );
+    int nHighestBlock = 10617425;
 
     CAmount nSubsidy = 0;
 
     if (nHeight == 1) {
         nSubsidy = 21000000 * COIN;
-    } else if (nHeight < nPhaseI && nHeight > 1) {
+    } else if (nHeight < nSoftTransitionBlock && nHeight > 1) {
         nSubsidy = 20 * COIN;        // Startup
+    } else if (nHeight < nPhaseI && nHeight >= nSoftTransitionBlock) {
+        nSubsidy = 1 * COIN;
     } else if (nHeight < nPhaseII && nHeight >= nPhaseI) {
-        nSubsidy = 30 * COIN;       // 6 Months
+        nSubsidy = 2 * COIN;
     } else if (nHeight < nPhaseIII && nHeight >= nPhaseII) {
-        nSubsidy = 40 * COIN;        // Year 1
-    } else if (nHeight < nHighestBlock && nHeight >= nPhaseIII) {
-        nSubsidy = 50 * COIN;      // Year 1.5 and later
+        nSubsidy = 4 * COIN;
+    } else if (nHeight < nPhaseIV && nHeight >= nPhaseIII) {
+        nSubsidy = 6 * COIN;
+    } else if (nHeight < nHighestBlock && nHeight >= nPhaseIV) {
+        nSubsidy = 8 * COIN;
     }
 
     return nSubsidy;

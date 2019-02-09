@@ -17,9 +17,9 @@ BetchipUnits::BetchipUnits(QObject *parent):
 QList<BetchipUnits::Unit> BetchipUnits::availableUnits()
 {
     QList<BetchipUnits::Unit> unitlist;
-    unitlist.append(BTP);
-    unitlist.append(mBTP);
-    unitlist.append(uBTP);
+    unitlist.append(BTCHP);
+    unitlist.append(mBTCHP);
+    unitlist.append(uBTCHP);
     unitlist.append(SAT);
     return unitlist;
 }
@@ -28,9 +28,9 @@ bool BetchipUnits::valid(int unit)
 {
     switch(unit)
     {
-    case BTP:
-    case mBTP:
-    case uBTP:
+    case BTCHP:
+    case mBTCHP:
+    case uBTCHP:
     case SAT:
         return true;
     default:
@@ -42,9 +42,9 @@ QString BetchipUnits::longName(int unit)
 {
     switch(unit)
     {
-    case BTP: return QString("BTP");
-    case mBTP: return QString("mBTP");
-    case uBTP: return QString::fromUtf8("µBTP (bits)");
+    case BTCHP: return QString("BTCHP");
+    case mBTCHP: return QString("mBTCHP");
+    case uBTCHP: return QString::fromUtf8("µBTCHP (bits)");
     case SAT: return QString("Satoshi (sat)");
     default: return QString("???");
     }
@@ -54,7 +54,7 @@ QString BetchipUnits::shortName(int unit)
 {
     switch(unit)
     {
-    case uBTP: return QString::fromUtf8("bits");
+    case uBTCHP: return QString::fromUtf8("bits");
     case SAT: return QString("sat");
     default: return longName(unit);
     }
@@ -64,9 +64,9 @@ QString BetchipUnits::description(int unit)
 {
     switch(unit)
     {
-    case BTP: return QString("Betchips");
-    case mBTP: return QString("Milli-Betchips (1 / 1" THIN_SP_UTF8 "000)");
-    case uBTP: return QString("Micro-Betchips (bits) (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+    case BTCHP: return QString("Betchips");
+    case mBTCHP: return QString("Milli-Betchips (1 / 1" THIN_SP_UTF8 "000)");
+    case uBTCHP: return QString("Micro-Betchips (bits) (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
     case SAT: return QString("Satoshi (sat) (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
     default: return QString("???");
     }
@@ -76,9 +76,9 @@ qint64 BetchipUnits::factor(int unit)
 {
     switch(unit)
     {
-    case BTP: return 100000000;
-    case mBTP: return 100000;
-    case uBTP: return 100;
+    case BTCHP: return 100000000;
+    case mBTCHP: return 100000;
+    case uBTCHP: return 100;
     case SAT: return 1;
     default: return 100000000;
     }
@@ -88,9 +88,9 @@ int BetchipUnits::decimals(int unit)
 {
     switch(unit)
     {
-    case BTP: return 8;
-    case mBTP: return 5;
-    case uBTP: return 2;
+    case BTCHP: return 8;
+    case mBTCHP: return 5;
+    case uBTCHP: return 2;
     case SAT: return 0;
     default: return 0;
     }

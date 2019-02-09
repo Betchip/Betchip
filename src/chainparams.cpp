@@ -74,12 +74,12 @@ class CMainParams : public CChainParams {
 public:
     CMainParams() {
         strNetworkID = "main";
-        consensus.nSubsidyHalvingInterval = 43800;
+        consensus.nSubsidyHalvingInterval = 60000;
         consensus.BIP16Exception = uint256();
-        consensus.BIP34Height = -1;
-        consensus.BIP34Hash = uint256();
-        consensus.BIP65Height = -1; 
-        consensus.BIP66Height = -1; 
+        consensus.BIP34Height = 0;
+        consensus.BIP34Hash = uint256S("0x000000003d9d1d48b6269e359b575df83975b5c63e4c78f12987facd0d18a5a2");
+        consensus.BIP65Height = 0; 
+        consensus.BIP66Height = 0; 
         consensus.powLimit = uint256S("00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nPowTargetTimespan = 3.5 * 24 * 60 * 60; // 3.5 days
         consensus.nPowTargetSpacing = 6 * 60;
@@ -102,10 +102,10 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 999999999999ULL;
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000ee3f8eff8437808bc");
+        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000051592d1eb62c344dc0");
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x000000000000003c3ed99fea5ae8e4ef1a544607bead1ffaff6a6aebbce820e6");
+        consensus.defaultAssumeValid = uint256S("0x00000000000000004546ea94df3577bf30e5a4f4cf94eacd194651c8a6d63ad9");
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -152,14 +152,14 @@ public:
                 { 10035, uint256S("0x00000000000000de5179fc5daa2865fb15d851f4fdc96a758d7c3127eee39fae")},
                 { 10097, uint256S("0x00000000000000f4e7da397a1ae7e3bba9fc7dae5523508943723c0bb3e4e644")},
                 { 10332, uint256S("0x000000000000011171034129820025aa8c1f4ff7cf9ed6c53c2bdcc1c51ba0c2")},
-                { 12723, uint256S("0x000000000000003c3ed99fea5ae8e4ef1a544607bead1ffaff6a6aebbce820e6")},
+                { 16021, uint256S("0x00000000000000004546ea94df3577bf30e5a4f4cf94eacd194651c8a6d63ad9")},
             }
         };
 
         chainTxData = ChainTxData{
-            // Data as of block 000000000000003c3ed99fea5ae8e4ef1a544607bead1ffaff6a6aebbce820e6 (height 12723).
-            1548720785, // * UNIX timestamp of last known number of transactions
-            14669,  // * total number of transactions between genesis and that timestamp
+            // Data as of block 00000000000000004546ea94df3577bf30e5a4f4cf94eacd194651c8a6d63ad9 (height 16021).
+            1549660454, // * UNIX timestamp of last known number of transactions
+            19263,  // * total number of transactions between genesis and that timestamp
                    //   (the tx=... number in the SetBestChain debug.log lines)
             25.0 // * estimated number of transactions per second after that timestamp
         };
@@ -176,7 +176,7 @@ class CTestNetParams : public CChainParams {
 public:
     CTestNetParams() {
         strNetworkID = "test";
-        consensus.nSubsidyHalvingInterval = 43800;
+        consensus.nSubsidyHalvingInterval = 60000;
         consensus.BIP16Exception = uint256();
         consensus.BIP34Height = -1;
         consensus.BIP34Hash = uint256();

@@ -60,7 +60,7 @@ Represents the view to a single wallet.
 
 * UI elements like BetchipAmountField, which inherit from QWidget.
 * `betchipstrings.cpp`: automatically generated
-* `betchipunits.(h/cpp)`: BTP / mBTP / etc handling
+* `betchipunits.(h/cpp)`: BTCHP / mBTCHP / etc handling
 * `callback.h`
 * `guiconstants.h`: UI colors, app name, etc
 * `guiutil.h`: several helper functions
